@@ -12,11 +12,12 @@ I'm a bilingual Technical Writer (English/Spanish) focused on strategic document
 
 This repository features:
 
-- **API references** written in OpenAPI and validated with Postman and cURL
-- **Configuration guides** that allow you to decide how you want the system to behave  
-- **Release notes** with impact analysis across software versions  
-- **Internal documentation** for R&D and architecture teams
-- **Flow diagram** to help you understand the logic of the system
+Flow Diagram — a visual overview of the system’s logic
+- **API references** defined in OpenAPI and validated with Postman and cURL
+- **Authorization setup** with instructions to securely access and consume the system
+- **Configuration guides** to customize how the system behaves to suit your needs  
+- **Release notes** with impact analysis across software version  
+- **Flow diagram** with a visual overview of the system's logic
 
 ## 🛠️ Tools & Methods
 
