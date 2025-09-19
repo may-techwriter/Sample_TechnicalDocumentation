@@ -1,6 +1,6 @@
 # Technical Writing Portfolio – Mayra
 
-¡Welcome to my portfolio as a Technical Writer!
+Welcome to my portfolio as a Technical Writer!
 
 This space showcases documentation I have created for biometric web services, including API consumption, configuration guides, and release notes.
 
