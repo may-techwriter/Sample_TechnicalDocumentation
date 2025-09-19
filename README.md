@@ -14,8 +14,8 @@ This repository features:
 
 - **API references** defined in OpenAPI [FaceRecognition_RESTAPI.yaml](https://github.com/may-techwriter/Sample_TechnicalDocumentation/blob/main/FaceRecognition_RESTAPI.yaml) and validated with Postman and cURL  
   → You can explore the API interactively by uploading the YAML file to [Swagger Editor](https://editor.swagger.io)  
-- **Configuration guide** to customize how the system behaves to suit your needs. Click [here]() to open the Configuration Guide.
-- **Release notes** with impact analysis across software versions
+- **Configuration guide** to customize how the system behaves to suit your needs. Click [here](https://github.com/may-techwriter/Sample_TechnicalDocumentation/blob/main/Configuration%20Guide%20v10.1.1) to go to the Configuration Guide.
+- **Release notes** with impact analysis across software versions. Consult What's new [here](https://github.com/may-techwriter/Sample_TechnicalDocumentation/blob/main/Release%20notes_v10.1.1)
 
 ## Tools & Methods
 
