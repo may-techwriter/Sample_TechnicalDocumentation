@@ -1,0 +1,64 @@
+# Configuration Guide – Face Recognition Web Service
+
+This guide explains how to configure and launch the face recognition web service using command-line parameters. No configuration file is required—setup is performed directly via the console or by registering the executable as a Windows service.
+
+---
+
+## Prerequisites
+
+Before configuring or launching the service, ensure the following requirements are met:
+
+### System Requirements
+- **Operating System**: Windows 10/11 or Windows Server 2016+
+- **Architecture**: x64 (64-bit)
+- **Permissions**: Administrator rights (required to bind ports and register services)
+
+### Dependencies
+- [Windows Runtime](https://www.microsoft.com/es-es/download/details.aspx?id=39717)
+- [Microsoft SQL Server 2017+](https://www.microsoft.com/es-es/evalcenter/download-sql-server-2017-rtm)
+- [ODBC Driver 17 for SQL Server](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver17)
+
+---
+
+## Available Configuration Parameters
+
+Omitting any of the parameters listed below will apply the default value.
+
+### 🔹 Set Domain
+
+Use the `--domain=` parameter to specify an IPv4 domain.
+
+- **Default**: `127.0.0.1` (localhost)
+
+### 🔹 Set Port
+
+Use the `--port=` parameter to specify the listening port.
+
+- **Note**: Ensure the selected port is open and not blocked by firewall rules.
+- **Default**: `80`
+
+### 🔹 Connect to the Database
+
+Use the `--db.uri=` parameter to define the connection string using the Microsoft ODBC Driver.
+
+- Refer to the [ODBC Driver 17 connection string guide](https://learn.microsoft.com/en-us/sql/integration-services/import-export-data/connect-to-an-odbc-data-source-sql-server-import-and-export-wizard?view=sql-server-ver17) for advanced options.
+
+**Example for testing environments:**
+```bash
+--db.uri="Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;Database=BiometricDB;Uid=sa;Pwd=YourPassword;"
+- Default: None (this parameter is required)
+  
+### 🔹 Set Log Directory
+Use the --log.dir= parameter to specify where system logs will be stored.
+- Default: C:\ProgramData\BiometricWebService\Bio_v10.1.1_logDirectory
+
+## Example command
+
+    face-recognition-api.exe ^
+  --domain=10.85.37.92 ^
+  --port=8888 ^
+  --db.uri="Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;Database=BiometricDB;Uid=sa;Pwd=YourPassword;" ^
+  --log.dir="C:\ProgramData\BiometricWebService\Bio_v10.1.1_logDirectory"
+
+  
+
