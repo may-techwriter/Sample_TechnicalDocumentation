@@ -1,0 +1,56 @@
+# Release Notes – Face Recognition Web Service
+
+## Version 10.1.1 – Internal Release  
+**Release Date:** September 2025  
+**Audience:** Internal QA and development teams
+
+This version introduces support for log directory customization and adds preliminary compatibility with HEIC image formats, preparing the system for future integration with iOS-based clients.
+
+---
+
+## Feature Enhancements
+
+- **Log directory customization**  
+  The log storage path can now be defined via the `--log.dir` parameter, allowing flexible deployment across environments.
+
+- **HEIC image format support**  
+  The service now accepts HEIC image inputs, enabling compatibility with iOS devices and modern camera sources. This enhancement is foundational and may require further validation in production-like scenarios.
+
+---
+
+## Impact Summary
+
+| Area           | Impact                                                                 |
+|----------------|------------------------------------------------------------------------|
+| Deployment     | Requires manual setup via CLI or PowerShell. No installer or GUI.      |
+| Database       | MSSQL Server must be preconfigured and reachable. No fallback or retry.|
+| Logging        | Logs are written to disk. Ensure write permissions and disk space.     |
+| Networking     | Port binding must be validated. Conflicts may prevent service startup. |
+| Monitoring     | No built-in health check or metrics. External tools recommended.       |
+| Security       | No authentication or encryption. Use behind firewall or proxy.         |
+
+---
+
+## Known Limitations
+
+- IPv4 only (no IPv6 or wildcard domain support)
+- No built-in authentication or TLS
+- Requires manual setup of database and firewall rules
+- Designed for internal use; not hardened for public exposure
+
+---
+
+## Supporting Documentation
+
+- [Configuration Guide]()
+
+---
+
+## Next Steps
+
+Planned for future internal iterations:
+
+- Full compatibility with iOS operating systems
+- Security layer implementation using OAuth
+- HTTPS support and certificate management
+- PostgreSQL database support
