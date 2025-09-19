@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Face Recognition REST API
+  description: "REST API that supports the identity lifecycle (create, retrieve, update, delete)."
+  version: 1.0.0
+servers:
+- url: https://10.82.23.59:443
+paths:
+  /groups/{group}/names/{name}:
+    post:
+      summary: Enroll a new identity
+      description: "Creates a new `vector` with the image entered, links it to a `name` and adds the link `vector-name` to the group specified in the request."
+      parameters:
+      - name: image
+        in: header
+        description: "BMP, JPG/JPEG, PNG, TIF/TIFF."
+        required: true
+        schema:
+          type: string
+          format: binary
+      - name: group
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "201":
+          description: Identity enrolled successfully.
+        "400":
+          description: A required field was omitted.
+        "409":
+          description: Name already exists.
+  /names/{name}:
+    get:
+      summary: Retrieve a name
+      description: Returns details of a specific `name`.
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Name details returned.
+        "404":
+          description: Name not found.
+    put:
+      summary: Update a name
+      description: Modifies the ID of an existing `name`.
+      parameters:
+      - name: name
+        in: path
+        description: Current ID of the `name`.
+        required: true
+        schema:
+          type: string
+      - name: cambia
+        in: query
+        description: New `name` ID that will replace the previous one.
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Name updated successfully.
+        "400":
+          description: Bad request (invalid format).
+        "404":
+          description: Name not found.
+    delete:
+      summary: Delete a name
+      description: Removes a `name` from the specified `group`.
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Identity deleted successfully.
+        "404":
+          description: Name not found.
+        "409":
+          description: Cannot delete due to existing dependencies.
+  /groups/{group}:
+    get:
+      summary: Retrieve a group
+      description: ID of the `group` to retreive.
+      parameters:
+      - name: group
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Group details returned.
+        "404":
+          description: Group not found.
+    put:
+      summary: Update a group
+      description: Modifies the ID of an existing `group`.
+      parameters:
+      - name: group
+        in: path
+        description: Current ID of the `group`.
+        required: true
+        schema:
+          type: string
+      - name: cambia
+        in: query
+        description: New `group` ID that will replace the previous one.
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Group details returned.
+        "404":
+          description: Group not found.
+    delete:
+      summary: Delete a group
+      description: Removes an name from the specified `group`.
+      parameters:
+      - name: group
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Group deleted successfully.
+        "404":
+          description: Name not found.
+        "409":
+          description: Cannot delete due to existing dependencies.
+components: {}
