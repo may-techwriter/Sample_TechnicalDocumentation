@@ -13,11 +13,11 @@ I'm a bilingual Technical Writer (English/Spanish) focused on strategic document
 This repository features:
 
 - **API references** defined in OpenAPI [FaceRecognition_v10.1.1](https://github.com/may-techwriter/Sample_TechnicalDocumentation/blob/main/FaceRecognition_v10.1.1.yaml) and validated with Postman and cURL  
-  → You can explore the API interactively by downloading the YAML file and opening it in [Swagger Editor](https://editor.swagger.io)
+  → You can explore the API interactively by clicking [Redoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/may-techwriter/Sample_TechnicalDocumentation/main/FaceRecognition_v10.1.1.yaml)
   *(Note: there is no live service behind these endpoints — this is a documentation sample only).*
     
 - **Configuration guide** to customize how the system behaves to suit your needs. Click [here](https://github.com/may-techwriter/Sample_TechnicalDocumentation/blob/main/Configuration%20Guide%20v10.1.1) to go to the Configuration Guide.
-- 
+
 - **Release notes** with impact analysis across software versions. Consult What's new [here](https://github.com/may-techwriter/Sample_TechnicalDocumentation/blob/main/Release%20notes_v10.1.1)
 
 
