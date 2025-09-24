@@ -9,11 +9,11 @@ paths:
   /groups/{group}/names/{name}:
     post:
       summary: Enroll a new identity
-      description: "Creates a new `vector` with the image entered, links it to a `name` and adds the link `vector-name` to the group specified in the request."
+      description: "Creates a new `vector` with the image entered, links it to a `name` and adds the link `vector-name` to the group specified in the request. Inserts all the data in the database (DB)."
       parameters:
       - name: image
         in: header
-        description: "BMP, JPG/JPEG, PNG, TIF/TIFF."
+        description: "BMP, HEIC, JPG/JPEG, PNG, TIF/TIFF."
         required: true
         schema:
           type: string
@@ -30,15 +30,41 @@ paths:
           type: string
       responses:
         "201":
-          description: Identity enrolled successfully.
+          description: Created
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Successful enrollment
+                  value:
+                    timestamp: "20250910"
+                    vectorID: abc123
+                    groupID: employees
+                    nameID: mayra
         "400":
-          description: A required field was omitted.
+          description: Bad request
+          content:
+            json:
+              examples:
+                missingFieldError:
+                  summary: Required field is missing in the request
+                  value:
+                    timestamp: "20250910"
+                    missingField: name
         "409":
-          description: Name already exists.
+          description: Conflict
+          content:
+            json:
+              examples:
+                duplicatedValue:
+                  summary: Name already exists
+                  value:
+                    timestamp: "20250910"
+                    name: mayra
   /names/{name}:
     get:
       summary: Retrieve a name
-      description: Returns details of a specific `name`.
+      description: Returns details of a specific `name` in DB.
       parameters:
       - name: name
         in: path
@@ -47,11 +73,30 @@ paths:
           type: string
       responses:
         "200":
-          description: Name details returned.
+          description: OK
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Name consult successfull
+                  value:
+                    timestamp: "20250910"
+                    nameID: mayra
+                    vectorID: abc123
+                    groupID: employees
+                    created: "20250607"
         "404":
-          description: Name not found.
+          description: Not found
+          content:
+            json:
+              examples:
+                notFoundError:
+                  summary: Name not found
+                  value:
+                    timestamp: "20250910"
+                    nameID: mayra
     put:
-      summary: Update a name
+      summary: Update a name ID
       description: Modifies the ID of an existing `name`.
       parameters:
       - name: name
@@ -60,7 +105,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: cambia
+      - name: update
         in: query
         description: New `name` ID that will replace the previous one.
         required: true
@@ -68,11 +113,37 @@ paths:
           type: string
       responses:
         "200":
-          description: Name updated successfully.
+          description: OK
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Name successfully updated
+                  value:
+                    timestamp: "20250910"
+                    newName: mayraN
+                    groupID: employees
+                    created: "20250607"
         "400":
-          description: Bad request (invalid format).
+          description: Bad request
+          content:
+            json:
+              examples:
+                missingFieldError:
+                  summary: Required field is missing in the request
+                  value:
+                    timestamp: "20250910"
+                    missingField: update
         "404":
-          description: Name not found.
+          description: Not found
+          content:
+            json:
+              examples:
+                notFoundError:
+                  summary: Name not found
+                  value:
+                    timestamp: "20250910"
+                    nameID: mayra
     delete:
       summary: Delete a name
       description: Removes a `name` from the specified `group`.
@@ -83,12 +154,26 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: Identity deleted successfully.
+        "204":
+          description: No content
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Name successfully deleted
+                  value:
+                    timestamp: "20250910"
+                    nameID: mayra
         "404":
-          description: Name not found.
-        "409":
-          description: Cannot delete due to existing dependencies.
+          description: Not found
+          content:
+            json:
+              examples:
+                notFoundError:
+                  summary: Name not found
+                  value:
+                    timestamp: "20250910"
+                    nameID: mayra
   /groups/{group}:
     get:
       summary: Retrieve a group
@@ -101,11 +186,30 @@ paths:
           type: string
       responses:
         "200":
-          description: Group details returned.
+          description: OK
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Group details retreived
+                  value:
+                    timestamp: "20250910"
+                    created: "20250607"
+                    namesContained: "4"
+                    namesID: "mayra, jason, fred, amanda"
+                    groupConsulted: employees
         "404":
-          description: Group not found.
+          description: Not found
+          content:
+            json:
+              examples:
+                notFoundError:
+                  summary: Group not found
+                  value:
+                    timestamp: "20250910"
+                    groupConsulted: employes
     put:
-      summary: Update a group
+      summary: Update a group ID
       description: Modifies the ID of an existing `group`.
       parameters:
       - name: group
@@ -114,7 +218,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: cambia
+      - name: update
         in: query
         description: New `group` ID that will replace the previous one.
         required: true
@@ -122,9 +226,85 @@ paths:
           type: string
       responses:
         "200":
-          description: Group details returned.
+          description: OK
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Name successfully updated
+                  value:
+                    timestamp: "20250910"
+                    newGroup: companyEmployees
+                    created: "20250607"
+        "400":
+          description: Bad request
+          content:
+            json:
+              examples:
+                missingFieldError:
+                  summary: Required field is missing in the request
+                  value:
+                    timestamp: "20250910"
+                    missingField: update
         "404":
-          description: Group not found.
+          description: Not found
+          content:
+            json:
+              examples:
+                notFoundError:
+                  summary: Group not found
+                  value:
+                    timestamp: "20250910"
+                    groupID: employes
+    post:
+      summary: Search an identity in the specified group.
+      description: Returns the match score in the response. A threshold must be applied to determine weather it is a match or not.
+      parameters:
+      - name: image
+        in: header
+        description: "BMP, HEIC, JPG/JPEG, PNG, TIF/TIFF."
+        required: true
+        schema:
+          type: string
+          format: binary
+      - name: group
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Successful search. Score ranges from 0 to 100.
+                  value:
+                    timestamp: "20250910"
+                    matchName: mayraN
+                    score: "80"
+                    groupID: employees
+        "400":
+          description: Bad request
+          content:
+            json:
+              examples:
+                missingError:
+                  summary: Missing input image
+                  value:
+                    timestamp: "20250910"
+                    missingField: image
+        "404":
+          description: Not found
+          content:
+            json:
+              examples:
+                notFoundError:
+                  summary: Group not found
+                  value:
+                    timestamp: "20250910"
+                    groupSearched: employes
     delete:
       summary: Delete a group
       description: Removes an name from the specified `group`.
@@ -135,10 +315,24 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: Group deleted successfully.
+        "204":
+          description: No content
+          content:
+            json:
+              examples:
+                successResponse:
+                  summary: Group successfully deleted
+                  value:
+                    timestamp: "20250910"
+                    groupID: Employees
         "404":
-          description: Name not found.
-        "409":
-          description: Cannot delete due to existing dependencies.
+          description: Not found
+          content:
+            json:
+              examples:
+                notFoundError:
+                  summary: Group not found
+                  value:
+                    timestamp: "20250910"
+                    groupID: Employes
 components: {}
