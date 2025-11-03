@@ -1,14 +1,14 @@
-# Technical Writing Portfolio – Mayra
+# Technical writing portfolio – Mayra
 
 Welcome to my portfolio as a Technical Writer!
 
 This space showcases documentation I have created for biometric web services, including API consumption, configuration guides, and release notes.
 
-## About Me
+## About me
 
 I'm a bilingual Technical Writer (English/Spanish) focused on strategic documentation for engineering teams. I specialize in translating complex technical decisions into clear, actionable content using docs-as-code workflows and tools like Markdown, YAML, and OpenAPI.
 
-## What's Included
+## What's included
 
 This repository features:
 
