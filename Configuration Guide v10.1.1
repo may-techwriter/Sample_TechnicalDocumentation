@@ -1,4 +1,4 @@
-# Configuration Guide – Face Recognition Web Service v10.1.1
+# Configuration guide – Face recognition web service v10.1.1
 
 This guide explains how to configure and launch the face recognition web service using command-line parameters. No configuration file is required—setup is performed directly via the console or by registering the executable as a Windows service.
 
@@ -20,24 +20,24 @@ Before configuring or launching the service, ensure the following requirements a
 
 ---
 
-## Available Configuration Parameters
+## Available configuration parameters
 
 Omitting any of the parameters listed below will apply the default value.
 
-### 🔹 Set Domain
+### 🔹 Set domain
 
 Use the `--domain=` parameter to specify an IPv4 domain.
 
 - **Default**: `127.0.0.1` (localhost)
 
-### 🔹 Set Port
+### 🔹 Set port
 
 Use the `--port=` parameter to specify the listening port.
 
 - **Note**: Ensure the selected port is open and not blocked by firewall rules.
 - **Default**: `80`
 
-### 🔹 Connect to the Database
+### 🔹 Connect to the database
 
 Use the `--db.uri=` parameter to define the connection string using the Microsoft ODBC Driver.
 
@@ -48,11 +48,11 @@ Use the `--db.uri=` parameter to define the connection string using the Microsof
 --db.uri="Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;Database=BiometricDB;Uid=sa;Pwd=YourPassword;"
 - Default: None (this parameter is required)
   
-### 🔹 Set Log Directory
+### 🔹 Set log directory
 Use the --log.dir= parameter to specify where system logs will be stored.
 - Default: C:\ProgramData\BiometricWebService\Bio_v10.1.1_logDirectory
 
-## Example command
+## Command example
 
     face-recognition-api.exe ^
   --domain=10.85.37.92 ^
